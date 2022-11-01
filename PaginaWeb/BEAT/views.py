@@ -10,12 +10,11 @@ from django.urls import reverse
 import os
 
 def index(request):
-    state.objects.all()[0].status
     imagen={}
     user=getuser()
     for i in cancion.objects.all():
         imagen[i.pk]=i.Prim+user+i.imagenSec
-    return render(request,"BEAT\index.html",{'imagenes':imagen,})
+    return render(request,"BEAT\index.html",{'imagenes':imagen})
 def songs(request):
     imagen=""
     song=""
@@ -85,9 +84,9 @@ def LogIn(request):
     else:
         for i in usuario.objects.all():
             if(i.nombre==name and i.password==passw):
-                newState=state(status="T")
+                newState=state(status="T",pkU=i.pk)
                 newState.save()
                 return HttpResponseRedirect(reverse("BEAT:index"))
-        newState=state(status="F")
+        newState=state(status="F",pkU=0)
         newState.save()
         return HttpResponseRedirect(reverse("BEAT:ingreso"))

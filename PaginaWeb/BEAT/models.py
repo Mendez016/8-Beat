@@ -18,3 +18,4 @@ class cancion(models.Model):
 
 class state(models.Model):
     status=models.CharField(max_length=2)
+    pkU=models.IntegerField()
