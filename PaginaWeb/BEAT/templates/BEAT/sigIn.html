@@ -1,0 +1,33 @@
+{%load static%}
+<!DOCTYPE html>
+<!-- INICIO DEL DOCUMENTO HTML-->
+<html lang="en">
+<head>
+	<!-- EN ESTA ZONA AÑADIMOS CARACTERES ESPECIALES DEL IDIOMA ESPAÑOL-->
+	<meta charset="utf-8">
+	<!-- TITULO DE LA PAGINA-->
+	<title>About Us</title>
+	<!-- ACA ANCLAMOS LA HOJA DE ESTILOS DE CSS-->
+	<link rel="stylesheet" href={%static "/sigIn.css"%}>
+</head>
+<!-- INICIO DEL CUERPO-->
+<body>
+	<header>
+        <h1 id="sig_in">Nuevo Usuario</h1>
+        <ol id="botones">
+			<a href="../music/" id="songs"><button id="button--songs"> Canciones</button></a>
+			<a href="../ " id="Principal"><button id="button--volver">Pagina principal</button></a>
+        </ol>
+	</header>
+	<main>
+        <form action="{% url 'BEAT:hacerRegistro' %}" id="sig_in--form" method="post">
+			{% csrf_token %}
+            <input type="text" id="usuario" name="user" placeholder="usuario">
+			<input type="text" id="password" name="password" placeholder="contraseña">
+			<input type="submit" valor="enviar" id="crear_usuario">
+        </form>
+	</main>
+	<footer>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,132 @@
+body{
+    /*ALTERAMOS LAS CUALIDADES DE LA IMAGEN USADA COMO FONDO*/
+    background-image: url("background.png");
+    background-repeat: no-repeat;/*HACEMOS QUE LA IMAGEN NO SE VEA 2 VECES EN LA PANTALLA*/
+    background-size: 100% 100%;/* LE DECIMOS A LA PAGINA QUE REDIMENSIONE LA IMAGEN A UN 100% PARA QUE OCUPE TODA LA PANTALLA*/
+}
+header{
+    min-height: 150px;
+    background: rgba(48, 48, 48, 0.678);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+footer{
+    min-height: 200px;
+    background-color: rgba(128, 0, 128, 0.555);
+    display: flex;
+    flex-direction: column;
+}
+main{
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background:  rgba(71, 68, 110, 0.575);
+}
+#NuevasCanciones{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background:linear-gradient(
+        1deg,
+        #002b63 15%,
+        #b9f1ff 25%,
+        #6ae1ff 35%,
+        #006fca 45%,
+        #09daff 55%,
+        #6980ff 65%,
+        #0003b8 75%,
+        #8ca7ff 85%
+
+    );
+    letter-spacing: 5px;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-size: 60px;
+    animation: shadow 1s linear infinite;
+}
+@keyframes shadow {
+    0%{
+        filter: 
+        drop-shadow(10px 10px 10px
+        rgb(13, 241, 32));
+    }
+    50%{
+        filter: 
+        drop-shadow(10px 10px 10px
+        rgb(0, 85, 21));
+    }
+    100%{
+        filter: 
+        drop-shadow(10px 10px 10px
+        rgb(13, 241, 24));
+    }
+    
+}
+#botones button{
+    font-family: monospace;
+    color: rgb(124, 255, 112);
+    font-size: 20px;
+    background-color: transparent;
+    border: transparent;
+    transition: 1s;
+    transition-delay: .2s;
+    margin: 10px;
+}
+#botones button:hover{
+    color: rgb(34, 34, 34);
+    background-color: rgb(124, 255, 112);
+}
+#NAME{
+    background:rgba(255, 255, 255, 0.466);
+    border: transparent;
+    border-bottom: solid white;
+    font-family: monospace;
+    color: white;
+    font-size: 30px;
+}
+.labels{
+    font-family: monospace;
+    color: rgb(255, 187, 0);
+    font-size: 20px;
+    background-color: transparent;
+    border: transparent;
+    transition: 1s;
+    transition-delay: .2s;
+    margin: 15px;
+}
+.labels:hover{
+    color: rgb(34, 34, 34);
+    background-color:rgb(255, 187, 0);
+}
+#addSong{
+    font-family: monospace;
+    color: rgb(255, 81, 81);
+    font-size: 20px;
+    background-color: transparent;
+    border: transparent;
+    transition: 1s;
+    transition-delay: .2s;
+    margin: 10px;
+}
+#addSong:hover{
+    color: rgb(34, 34, 34);
+    background-color:rgb(255, 81, 81);
+}
+.files{
+    max-width: 1px;
+    max-height: 1px;
+}
+li{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

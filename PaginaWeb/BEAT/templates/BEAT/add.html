@@ -1,0 +1,40 @@
+{%load static%}
+<!DOCTYPE html>
+<!-- INICIO DEL DOCUMENTO HTML-->
+<html lang="en">
+<head>
+	<!-- EN ESTA ZONA AÑADIMOS CARACTERES ESPECIALES DEL IDIOMA ESPAÑOL-->
+	<meta charset="utf-8">
+	<!-- TITULO DE LA PAGINA-->
+	<title>About Us</title>
+	<!-- ACA ANCLAMOS LA HOJA DE ESTILOS DE CSS-->
+	<link rel="stylesheet" href={%static "/add.css"%}>
+</head>
+<!-- INICIO DEL CUERPO-->
+<body>
+	<header>
+		<h1 id="NuevasCanciones">New songs</h1>
+		<ol id="botones">
+			<a href="../music/"  id="songs"><button id="button--songs"> Canciones</button></a>
+			<a href="../ " id="Principal"><button id="button--volver">Pagina principal</button></a>
+		</ol>
+	</header>
+	<main>
+        <form action="{% url 'BEAT:addNew' %}" id="newSong" method="post">
+			{%csrf_token%}
+            <input type="text" name="nombre" id="NAME" placeholder="Nombre de la cancion">
+            <li>
+            <label for="audio" class="labels" id="label--audio">Audio</label>
+            <input type="file" id="audio" name="audios" accept="audio/*" class="files">
+            <label for="image" class="labels" id="label--imagen">Imagen</label>
+            <input type="file" id="image" name="imagenes" accept="image/*" class="files">
+        </li>
+            <input type="submit" valor="enviar" id="addSong">
+        </form>
+	</main>
+	<footer>
+
+	</footer>
+</body>
+<script src={%static "/add.js"%} type="text/javascript"></script>
+</html>

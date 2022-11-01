@@ -1,0 +1,102 @@
+body{
+    /*ALTERAMOS LAS CUALIDADES DE LA IMAGEN USADA COMO FONDO*/
+    background-image: url("background.png");
+    background-repeat: no-repeat;/*HACEMOS QUE LA IMAGEN NO SE VEA 2 VECES EN LA PANTALLA*/
+    background-size: 100% 100%;/* LE DECIMOS A LA PAGINA QUE REDIMENSIONE LA IMAGEN A UN 100% PARA QUE OCUPE TODA LA PANTALLA*/
+}
+header{
+    min-height: 150px;
+    background: rgba(48, 48, 48, 0.678);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+main{
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background:  rgba(0, 0, 0, 0.479);
+}
+footer{
+    min-height: 200px;
+    background-color: rgba(128, 0, 128, 0.555);
+    display: flex;
+}
+#sig_in{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background:linear-gradient(
+        1deg,
+        #616300 15%,
+        #feffb9 25%,
+        #d7ff6a 35%,
+        #cac700 45%,
+        #efff09 55%,
+        #ffbe69 65%,
+        #b87800 75%,
+        #ffc08c 85%
+
+    );
+    letter-spacing: 5px;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-size: 60px;
+    animation: shadow 1s linear infinite;
+}
+@keyframes shadow {
+    0%{
+        filter: 
+        drop-shadow(10px 10px 10px
+        rgb(233, 13, 241));
+    }
+    50%{
+        filter: 
+        drop-shadow(10px 10px 10px
+        rgb(85, 0, 67));
+    }
+    100%{
+        filter: 
+        drop-shadow(10px 10px 10px
+        rgb(233, 13, 241));
+    }
+    
+}
+#botones button{
+    font-family: monospace;
+    color: rgb(203, 112, 255);
+    font-size: 20px;
+    background-color: transparent;
+    border: transparent;
+    transition: 1s;
+    transition-delay: .2s;
+    margin: 10px;
+}
+#botones button:hover{
+    color: rgb(34, 34, 34);
+    background-color: rgb(203, 112, 255) ;
+}
+input{
+    background:rgba(255, 255, 255, 0.466);
+    border: transparent;
+    border-bottom: solid white;
+    font-family: monospace;
+    color: white;
+    font-size: 30px;
+}
+#crear_usuario{
+    font-family: monospace;
+    color: rgb(0, 255, 213);
+    font-size: 20px;
+    background-color: transparent;
+    border: transparent;
+    transition: 1s;
+    transition-delay: .2s;
+    margin: 30px;
+}
+#crear_usuario:hover{
+    color: rgb(34, 34, 34);
+    background-color: rgb(0, 255, 213) ;
+}

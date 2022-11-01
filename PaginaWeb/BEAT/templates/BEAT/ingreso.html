@@ -1,0 +1,42 @@
+{%load static%}
+<!DOCTYPE html>
+<!-- INICIO DEL DOCUMENTO HTML-->
+<html lang="en">
+<head>
+	<!-- EN ESTA ZONA AÑADIMOS CARACTERES ESPECIALES DEL IDIOMA ESPAÑOL-->
+	<meta charset="utf-8">
+	<!-- TITULO DE LA PAGINA-->
+	<title>About Us</title>
+	<!-- ACA ANCLAMOS LA HOJA DE ESTILOS DE CSS-->
+	<link rel="stylesheet" href={%static "/ingreso.css"%}>
+</head>
+<!-- INICIO DEL CUERPO-->
+<body>
+	<header>
+		<h1 id="About_us">Ingresar</h1>
+		<ol id="botones">
+			<a href="../music/" id="songs"><button id="button--songs"> Canciones</button></a>
+			<a href="../ " id="Principal"><button id="button--volver">Pagina principal</button></a>
+            <a href="../add" id="add_new"><button id="button--add_song">Añadir cancion</button></a>
+		</ol>
+	</header>
+	<main>
+		<form id="formulario_ingreso"action="{% url 'BEAT:logIn' %}" method="post">
+			{%csrf_token%}
+			<input type="text" id="usuario" name="user" placeholder="usuario">
+			<input type="text" id="password" name="password" placeholder="contraseña">
+			<input type="submit" valor="enviar" id="sig_in--button">
+		</form>
+		{% if lista %}
+		    <h2 id="comprobacion">Lo sentimos, el usuario o contraseña son incorrectos</h2>
+		{% endif %}
+		<ol id="sig_in">
+			<h2 id="sig_in--text">¿No tienes una cuenta?, intenta</h2>
+			<a href="../registro/"><button id="sig_in--button"> Crear un usuario nuevo</button></a>
+		</ol>
+	</main>
+	<footer>
+
+	</footer>
+</body>
+</html>

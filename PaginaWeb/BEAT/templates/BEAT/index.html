@@ -1,0 +1,26 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Portada</title>
+	<link rel="stylesheet" href={%static "/estilo.css"%}>
+</head>
+<body>
+	<header>
+		<h1 id="BEAT">8-BEAT</h1>
+		<ol id="botones">
+			<a href="music/" id="Songs"><button id="button--Canciones">Canciones</button></a>
+            <a href="add/" id="add_new"><button id="button--add_song">Añadir cancion</button></a>
+			<a href="ingreso/" id="US"><button id="button--US">Ingresar</button></a>
+		</ol>
+	</header>
+	<main>
+		<h2 id="novedad">Novedades</h2>
+		<ol id="novedad--disco_y_boton">
+			<img src={%static imagenes.1%} height="100" width="100 " id="imagen--novedad">
+			<a href="" id="escuchar"><button id="button--escuchar">Escuchar cancion</button></a>
+		</ol>
+	</main>
+</body>
+</html>
