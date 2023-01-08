@@ -8,14 +8,34 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import timezone as Tz
 from django.urls import reverse
 import os
+def firstOpen(request):
+    state.objects.all().delete()
+    return HttpResponseRedirect(reverse("BEAT:index"))
 
 def index(request):
+    try:
+        stat=state.objects.all()[0]
+        estado=stat.status
+        identificador=stat.pkU
+    except:
+        estado="F"
+        identificador=0
+    names=usuario.objects.all()[identificador].nombre
+    largo=len(cancion.objects.all())-1
     imagen={}
     user=getuser()
-    for i in cancion.objects.all():
-        imagen[i.pk]=i.Prim+user+i.imagenSec
-    return render(request,"BEAT\index.html",{'imagenes':imagen})
+    i=cancion.objects.all()[0]
+    imagen=i.Prim.replace("C:","/static/C%3A")+user+i.imagenSec.replace("0.png","")
+    return render(request,"BEAT\index.html",{'imagenes':imagen,'estado':estado,'logeado':names,'largo':largo})
 def songs(request):
+    try:
+        stat=state.objects.all()[0]
+        estado=stat.status
+        identificador=stat.pkU
+    except:
+        estado="F"
+        identificador=0
+    names=usuario.objects.all()[identificador].nombre
     imagen=""
     song=""
     user=getuser()
@@ -24,16 +44,13 @@ def songs(request):
     song=i.Prim.replace("C:","/static/C%3A")+user+i.audioSec.replace("0.mp3","")
 
     return render(request,"BEAT\songsPage.html",{'imagenes':imagen,'canciones':song,'largo':
-    len(cancion.objects.all())})
+    len(cancion.objects.all()),'logeado':names,'estado':estado})
 
 def registro(request):
     return render(request,"BEAT\sigIn.html")
 
 def ingreso(request):
-    return render(request,"BEAT\ingreso.html")
-
-def logear(request):
-    return render(request,"BEAT\ingreso.html")
+    return render(request,"BEAT\ingreso.html",{'sts':False})
 
 def add(request):
     return render(request,"BEAT/add.html")
@@ -84,9 +101,13 @@ def LogIn(request):
     else:
         for i in usuario.objects.all():
             if(i.nombre==name and i.password==passw):
-                newState=state(status="T",pkU=i.pk)
+                newState=state(status="",pkU=i.pk-1)
                 newState.save()
                 return HttpResponseRedirect(reverse("BEAT:index"))
-        newState=state(status="F",pkU=0)
+        newState=state(status="T",pkU=0)
         newState.save()
-        return HttpResponseRedirect(reverse("BEAT:ingreso"))
+        return HttpResponseRedirect(reverse("BEAT:errorIn"))
+
+def errorIngreso(request):
+    state.objects.all().delete()
+    return render(request,"BEAT\ingreso.html",{'sts':True})

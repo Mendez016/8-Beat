@@ -16,8 +16,7 @@
 		<h1 id="About_us">Ingresar</h1>
 		<ol id="botones">
 			<a href="../music/" id="songs"><button id="button--songs"> Canciones</button></a>
-			<a href="../ " id="Principal"><button id="button--volver">Pagina principal</button></a>
-            <a href="../add" id="add_new"><button id="button--add_song">Añadir cancion</button></a>
+			<a href="../index/" id="Principal"><button id="button--volver">Pagina principal</button></a>
 		</ol>
 	</header>
 	<main>
@@ -27,7 +26,7 @@
 			<input type="text" id="password" name="password" placeholder="contraseña">
 			<input type="submit" valor="enviar" id="sig_in--button">
 		</form>
-		{% if lista %}
+		{% if sts %}
 		    <h2 id="comprobacion">Lo sentimos, el usuario o contraseña son incorrectos</h2>
 		{% endif %}
 		<ol id="sig_in">

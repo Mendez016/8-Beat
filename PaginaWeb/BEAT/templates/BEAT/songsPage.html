@@ -8,7 +8,7 @@
 	<!-- TITULO DE LA PAGINA-->
 	<title>Canciones</title>
 	<!-- ACA ANCLAMOS LA HOJA DE ESTILOS DE CSS-->
-	<link rel="stylesheet" href={%static "/estilosPae.css"%}>
+	<link rel="stylesheet" href={%static "/estilosPage.css"%}>
     <link rel="shortcut icon" href="#">
 </head>
 <!-- INICIO DEL CUERPO-->
@@ -21,13 +21,16 @@
     <header>
 		<h1 id="songs">Canciones</h1>
 		<ol id="botones">
-			<a href="../ " id="Principal"><button id="button--volver">Pagina principal</button></a>
-            <a href="../add" id="add_new"><button id="button--add_song">Añadir cancion</button></a>
-			<a href="../ingreso/" id="US"><button id="button--Log-in"> Ingresar</button></a>
+			<a href="../index/ " id="Principal"><button id="button--volver">Pagina principal</button></a>
+			{%if estado %}
+			<a href="../ingreso/" id="US"><button id="button--US">Ingresar</button></a>
+			{%else%}
+            <a href="../add/" id="add_new"><button id="button--add_song">Añadir cancion</button></a>
+			<h3 id="button--US">usuario: {{logeado}}</h3>
+			{%endif%}
 		</ol>
 	</header> 
     <nav>
-        <button id="bucle">Activar bucle</button>
         <button id="anteriorPagina" onclick="backBar()">Pagina anterior</button>
         <ol>
             <img id="disk1" height="100" width="100" src="#" onclick="start(1+(barra*5))"/>
@@ -42,27 +45,24 @@
         <button id="siguientePagina" onclick="sigBar()">Siguiente pagina</button>
     </nav>
     <main>
-        <button id="antes" onclick="actual-=1;nextBack(actual)">Cancion Anterior</button>
+        <button id="antes" onclick="actual-=1;nextBack(actual,0)">Cancion Anterior</button>
         <img id="Centro" height="200" width="200" src="#"/>
-        <button id="siguiente" onclick="actual+=1;nextBack(actual)">Siguiente Cancion</button>
+        <button id="siguiente" onclick="actual+=1;nextBack(actual,1)">Siguiente Cancion</button>
 </main>
     <footer>
         <button id="reproduccion" onclick="reprod()">Reproducir/pausar</button>
-        <input type="range" min="0" max="100" id="time" onchange="avanze()">
     </footer>
 </body>
 <script> 
     let barra=0
     const atras=document.getElementById('antes')
     const sig=document.getElementById('siguiente')
-    const timeBar=document.getElementById('time')
     let stat=false
     let centro=document.getElementById('Centro')
     let recurso=document.getElementById('source')
     let cancion=document.getElementById('song')
     let rep=document.getElementById('reproduccion')
     let actual
-    timeBar.value=0 
     let i=0
     while(i<5){
         document.getElementById('disk'+(i+1)).src=img+i+".png"
@@ -71,18 +71,15 @@
     centro.src=document.getElementById('disk1').src=img+"0.png"
     function sigBar(){
         barra+=1
-        if(barra>=(ancho%5)){
+        if(barra>(parseInt(ancho/5))){
              barra=0
         }
         cambioNav()
     }
-    function avanze(){
-        cancion.currentTime=cancion.duration*(timeBar.value/100)
-    }
     function backBar(){
         barra-=1
         if(barra<=-1){
-             barra=(ancho%5-1)
+             barra=(parseInt(ancho/5))
         }
         cambioNav()
     }
@@ -106,29 +103,30 @@
             stat=true
         }
     }
-    function nextBack(ids){
-        ids-=barra*5
-        timeBar.value=0 
-        if(ids>5){
-            ids=0
-            actual=0
-        }
-        if(ids<1){
-            ids=5
-            actual=5
+    function nextBack(ids,sta){
+        if(sta==1){
+            if(ids>5+barra*5){
+                ids=1+barra*5
+                actual=1+barra*5
+            }  
+        }else{
+            if(ids<1+barra*5){
+                ids=5+barra*5
+                actual=5+barra*5
+            }
         }
         cancion.pause()
-        centro.src=document.getElementById('disk'+(ids)).src
-        recurso.src=aud+((ids+barra*5)-1)+".mp3"
+        centro.src=document.getElementById('disk'+(ids-barra*5)).src
+        recurso.src=aud+((ids)-1)+".mp3"
         cancion=document.getElementById('song')
         cancion.load(recurso.src,function(response){
             console.log(response)
         })
+        console.log(ids)
         cancion.play()
         stat=true
     }
     function start(ids){
-        timeBar.value=0 
         cancion.pause()
         stat=false
         centro.src=document.getElementById('disk'+(ids-barra*5)).src
